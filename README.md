@@ -9,4 +9,4 @@
 The following is a program for playing Wordle in the console written in python3.
 
 ## Reference
-* https://github.com/dwyl/english-words 
+* https://github.com/dwyl/english-words
