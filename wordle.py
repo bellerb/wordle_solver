@@ -19,7 +19,7 @@ class Wordle:
                 return False
 
     def game_result(self):
-        win = (False, 0)
+        win = (False, 99)
         for i, r in enumerate(self.board):
             if self.word == ''.join(r):
                 win = (True, i)

@@ -8,7 +8,7 @@ from wordle import Wordle
 
 ROWS = 6
 LETTERS = 5
-GAMES = 1000
+GAMES = 100
 
 w_bank = pd.read_csv('data/words.csv')
 w_bank = w_bank[w_bank['words'].str.len()==LETTERS]
