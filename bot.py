@@ -28,7 +28,8 @@ class Agent:
                     if letter not in self.y_letters:
                         self.y_letters[letter] = [x]
                     else:
-                        self.y_letters[letter].append(x)
+                        if x not in self.y_letters[letter]:
+                            self.y_letters[letter].append(x)
                 elif c == 'G':
                     self.prediction[x] = letter
                 else:
@@ -39,13 +40,16 @@ class Agent:
                             self.y_letters[letter].append(x)
                     elif letter not in self.g_letters:
                         self.g_letters.append(letter)
+            self.g_letters = [l for l in self.g_letters if l not in self.y_letters]
 
     def choose_action(self):
         self.parse_board()
         if len(self.g_letters) > 0:
+            print(self.g_letters)
             self.w_bank = self.w_bank[~self.w_bank['words'].str.contains('|'.join(self.g_letters))]
             self.g_letters = []
         if len(self.y_letters) > 0:
+            print(self.y_letters)
             y_str = '^' + ''.join(fr'(?=.*{l})' for l in self.y_letters)
             self.w_bank = self.w_bank[self.w_bank['words'].str.contains(y_str)]
             for s, p in self.y_letters.items():
