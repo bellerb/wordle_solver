@@ -6,7 +6,27 @@
 )](#)
 
 ### Description
-The following is a program for playing Wordle in the console written in python3.
+The following is a program for playing Wordle in the console written in python3. When playing the game will give you 3 options:
+
+* Test Solver [T]
+* Game Assist [A]
+* Play Game [P]
+
+#### Test Solver
+The test solver option can be selected by typing in a "T". This will run the solver for how ever many games you have set up in the main.py file. To change this change the following variable.
+```
+GAMES = 10 
+```
+
+#### Game Assist
+The game assist option is a way to have it help you choose your words when playing on the actual game. To play type in the suggested words. The agent will then ask you for what the game returned as hints. The agent will be looking for a responce like "bbygb". For this the options are:
+
+* b = black/grey
+* y = yellow
+* g = green
+
+#### Play Game
+The play game option is a way to play wordle games in your console.
 
 # Launch Instructions
 step 1: open your console <br>
