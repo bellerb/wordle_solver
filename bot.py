@@ -45,11 +45,9 @@ class Agent:
     def choose_action(self):
         self.parse_board()
         if len(self.g_letters) > 0:
-            print(self.g_letters)
             self.w_bank = self.w_bank[~self.w_bank['words'].str.contains('|'.join(self.g_letters))]
             self.g_letters = []
         if len(self.y_letters) > 0:
-            print(self.y_letters)
             y_str = '^' + ''.join(fr'(?=.*{l})' for l in self.y_letters)
             self.w_bank = self.w_bank[self.w_bank['words'].str.contains(y_str)]
             for s, p in self.y_letters.items():

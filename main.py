@@ -8,7 +8,7 @@ from wordle import Wordle
 
 ROWS = 6
 LETTERS = 5
-GAMES = 100
+GAMES = 10
 
 w_bank = pd.read_csv('data/words.csv')
 w_bank = w_bank[w_bank['words'].str.len()==LETTERS]
@@ -21,7 +21,12 @@ if 'T' in str(control).upper() or 'P' in str(control).upper():
     else:
         print('TEST SOLVER SELECTED\n---------------------\n')
     results = []
-    for _ in tqdm(range(GAMES), desc='GAMES'):
+    if 'P' in str(control).upper():
+        silent = True
+        GAMES = 1
+    else:
+        silent = False
+    for _ in tqdm(range(GAMES), desc='GAMES', disable=silent):
         word = random.choice(w_bank['words'].tolist())
         game = Wordle(
             word,
@@ -36,6 +41,8 @@ if 'T' in str(control).upper() or 'P' in str(control).upper():
                 u_inp = bot.choose_action()
             if game.valid_guess(u_inp) == True:
                 game.update_board(u_inp)
+                if 'P' in str(control).upper():
+                    print(game.colours[game.g_count-1])
             else:
                 print('ERROR - WORDS MUST BE 5 LETTERS')
         r = game.game_result()
@@ -47,7 +54,7 @@ if 'T' in str(control).upper() or 'P' in str(control).upper():
                     print(f'\nCONGRATS YOU WON IN {r[1] + 1} GUESS!\n')
             else:
                 print(f'\nSORRY YOU DID NOT WIN.\n')
-            print(np.array(game.board))
+            print(np.array(game.board),'\n')
         results.append({'word':word,'result':r[0],'moves':r[1]+1})
 
     results = pd.DataFrame(results)
