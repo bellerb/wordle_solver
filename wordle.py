@@ -1,7 +1,15 @@
+from copy import deepcopy
+
 class Wordle:
     def __init__(self, word, rows=6, letters=5):
         self.g_count = 0
         self.word = word
+        self.w_hash_table = {}
+        for l in word:
+            if l in self.w_hash_table:
+                self.w_hash_table[l] += 1
+            else:
+                self.w_hash_table[l] = 1
         self.rows = rows
         self.letters = letters
         self.board = [['' for _ in range(letters)] for _ in range(rows)]
@@ -27,12 +35,15 @@ class Wordle:
         return win
 
     def update_board(self, u_inp):
+        w_hash_table = deepcopy(self.w_hash_table)
         for i, s in enumerate(str(u_inp).upper()):
             self.board[self.g_count][i] = s
             if self.word[i] == s:
                 self.colours[self.g_count][i] = 'G' #Correct place and letter
-            elif s in self.word:
+                w_hash_table[s] -= 1
+            elif s in w_hash_table and w_hash_table[s] >= 1:
                 self.colours[self.g_count][i] = 'Y' #Wrong place but letter in word
+                w_hash_table[s] -= 1
             else:
                 self.colours[self.g_count][i] = 'B' #Letter not in word
         self.g_count += 1
