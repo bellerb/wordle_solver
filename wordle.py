@@ -5,11 +5,12 @@ class Wordle:
         self.g_count = 0
         self.word = word
         self.w_hash_table = {}
-        for l in word:
-            if l in self.w_hash_table:
-                self.w_hash_table[l] += 1
-            else:
-                self.w_hash_table[l] = 1
+        if word is not None:
+            for l in word:
+                if l in self.w_hash_table:
+                    self.w_hash_table[l] += 1
+                else:
+                    self.w_hash_table[l] = 1
         self.rows = rows
         self.letters = letters
         self.board = [['' for _ in range(letters)] for _ in range(rows)]
