@@ -14,10 +14,10 @@ w_bank = pd.read_csv('data/words.csv')
 w_bank = w_bank[w_bank['words'].str.len()==LETTERS]
 w_bank['words'] = w_bank['words'].str.upper() #Convert all words to uppercase
 
-control = input('What would you like to do?\n\n-Test Solver [T]\n-Game Assist [A]\n-Play Game [P]\n\n')
+control = input('What would you like to do?\n\n-Test Solver [T]\n-Game Assist [A]\n-Play Game   [P]\n\n')
 if 'T' in str(control).upper() or 'P' in str(control).upper():
     if 'P' in str(control).upper():
-        print('PLAY GAME SELECTED\n---------------------\n')
+        print('PLAY GAME SELECTED\n---------------------')
     else:
         print('TEST SOLVER SELECTED\n---------------------\n')
     results = []

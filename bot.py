@@ -22,6 +22,7 @@ class Agent:
 
     def parse_board(self):
         if self.game.g_count > 0:
+            g_hold = []
             for x, c in enumerate(self.game.colours[self.game.g_count - 1]):
                 letter = self.game.board[self.game.g_count - 1][x]
                 if c == 'Y':
@@ -33,14 +34,14 @@ class Agent:
                 elif c == 'G':
                     self.prediction[x] = letter
                 else:
-                    if letter in ''.join(self.prediction):
+                    if letter in self.prediction:
                         if letter not in self.y_letters:
                             self.y_letters[letter] = [x]
                         else:
                             self.y_letters[letter].append(x)
                     elif letter not in self.g_letters:
                         self.g_letters.append(letter)
-            self.g_letters = [l for l in self.g_letters if l not in self.y_letters]
+            self.g_letters = [l for l in self.g_letters if l not in self.y_letters and l not in self.prediction]
 
     def choose_action(self):
         self.parse_board()
