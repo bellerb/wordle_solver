@@ -59,9 +59,10 @@ class Wordle:
                     y_hold = []
                     for p in i_hash_table[l]:
                         y_hold.append(p)
-                        i_hash_table[l].remove(p)
                         if len(y_hold) == w_hash_table[l]['count']:
                             break
+                    for p in y_hold:
+                        i_hash_table[l].remove(p)
                     colours['Y'] += y_hold
                 for p in i_hash_table[l]:
                     colours['B'].append(p)
