@@ -6,7 +6,7 @@
 )](#)
 
 ### Description
-The following is a program for playing Wordle in the console written in python3. When playing the game will give you 3 options:
+The following is a program for playing Wordle in the console written in python3. When playing, the game will give you 3 options:
 
 * Test Solver [T]
 * Game Assist [A]
