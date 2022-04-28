@@ -36,13 +36,19 @@ if 'T' in str(control).upper() or 'P' in str(control).upper():
         bot = Agent(game)
         while game.is_end() == False:
             if 'P' in str(control).upper():
-                u_inp = input('\nPLEASE GUESS A 5 LETTER WORD\n')
+                u_inp = input('\n* PLEASE GUESS A 5 LETTER WORD\n')
             else:
                 u_inp = bot.choose_action()
             if game.valid_guess(u_inp) == True:
                 game.update_board(u_inp)
                 if 'P' in str(control).upper():
-                    print(game.colours[game.g_count-1])
+                    # print(game.colours[game.g_count-1])
+                    print("* COLORS & GUESSES:")
+                    for c,b in zip(game.colours,game.board):
+                        colors_string="".join(c)
+                        guess_string="".join(b)
+                        if guess_string != colors_string:  # simple hack to not print blank lines: color string is never a legit word. so if both are equal then its an empty line (we haven't played it yet).
+                           print(colors_string, guess_string)
             else:
                 print('ERROR - WORDS MUST BE 5 LETTERS')
         r = game.game_result()
