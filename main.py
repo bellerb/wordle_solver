@@ -77,6 +77,9 @@ elif "A" in str(control).upper():
         guess = bot.choose_action()
         print(f"\nSuggested Word = {guess}\n")
         u_inp = input("What were the colours returned [ex. ybggy]?\n")
+        if u_inp.lower() == "ggggg":
+            print("\nCONGRATS YOU WON The game!\n")
+            break
         game.colours[i] = [s for s in str(u_inp).upper()]
         game.board[i] = [s for s in str(guess).upper()]
         game.g_count += 1
