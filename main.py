@@ -11,7 +11,7 @@ ROWS = 6  # the number of rows in the wordle, or the number of times you can gue
 LETTERS = 5  # the number of characters in the word
 GAMES = 10  # the number of games to play
 
-w_bank = pd.read_csv("data/words.csv")
+w_bank = pd.read_csv(r"D:\np\wordle_solver\data\words.csv")
 w_bank = w_bank[w_bank["words"].str.len() == LETTERS]
 w_bank["words"] = w_bank["words"].str.upper()  # Convert all words to uppercase
 
